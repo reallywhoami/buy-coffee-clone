@@ -15,7 +15,7 @@ contract BuyMeATea is Ownable {
         // Global variable msg.sender can be used because
         // onlyOwner modifier is applied.
         console.log(
-            "Withdrawing %s ether (wei) from %s to %s",
+            "Withdrawing %s wei from %s to %s",
             address(this).balance,
             address(this),
             msg.sender
@@ -34,6 +34,12 @@ contract BuyMeATea is Ownable {
         payable
     {
         require(msg.value > 0, "Can't buy a tea with no ether.");
+        console.log(
+            "Donated %s by %s with message: %s",
+            msg.value,
+            _name,
+            _message
+        );
         emit Donate(msg.sender, block.timestamp, _name, _message);
     }
 }
