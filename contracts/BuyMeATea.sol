@@ -5,15 +5,23 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
 contract BuyMeATea is Ownable {
-    // Event to emit when a donate is received.
-    event Donate(address tipper, uint256 time, string name, string message);
+    event NewDonate(address tipper, uint256 value, string name, string message);
+
+    struct Donate {
+        address tipper;
+        uint256 value;
+        string name;
+        string message;
+    }
+
+    Donate[] donates;
 
     /**
      * @dev Sends the entire balance stored in this contract to the owner.
      */
     function withdraw() external onlyOwner {
-        // Global variable msg.sender can be used because
-        // onlyOwner modifier is applied.
+        // Global variable msg.sender can be used for
+        // gas optimization because onlyOwner modifier is applied.
         console.log(
             "Withdrawing %s wei from %s to %s",
             address(this).balance,
@@ -34,12 +42,21 @@ contract BuyMeATea is Ownable {
         payable
     {
         require(msg.value > 0, "Can't buy a tea with no ether.");
+
+        donates.push(Donate(msg.sender, msg.value, _name, _message));
         console.log(
             "Donated %s by %s with message: %s",
             msg.value,
             _name,
             _message
         );
-        emit Donate(msg.sender, block.timestamp, _name, _message);
+        emit NewDonate(msg.sender, msg.value, _name, _message);
+    }
+
+    /**
+     * @dev Returns all donates to a user.
+     */
+    function getDonates() external view returns (Donate[] memory) {
+        return donates;
     }
 }

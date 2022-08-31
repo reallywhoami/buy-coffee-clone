@@ -65,20 +65,20 @@ describe('Buy me a tea contract', function () {
       await expect(
         await buyMeATea.connect(tipper1).donate('Jake', 'Nice job', tip)
       )
-        .to.emit(buyMeATea, 'Donate')
-        .withArgs(tipper1.address, anyUint, 'Jake', 'Nice job')
+        .to.emit(buyMeATea, 'NewDonate')
+        .withArgs(tipper1.address, oneEther, 'Jake', 'Nice job')
 
       await expect(
         await buyMeATea.connect(tipper2).donate('Caleb', 'Thanks!', tip)
       )
-        .to.emit(buyMeATea, 'Donate')
-        .withArgs(tipper2.address, anyUint, 'Caleb', 'Thanks!')
+        .to.emit(buyMeATea, 'NewDonate')
+        .withArgs(tipper2.address, oneEther, 'Caleb', 'Thanks!')
 
       await expect(
         await buyMeATea.connect(tipper3).donate('Monica', 'Cool', tip)
       )
-        .to.emit(buyMeATea, 'Donate')
-        .withArgs(tipper3.address, anyUint, 'Monica', 'Cool')
+        .to.emit(buyMeATea, 'NewDonate')
+        .withArgs(tipper3.address, oneEther, 'Monica', 'Cool')
     })
 
     it('Should withdraw', async function () {

@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { EDIT_DISTANCE_THRESHOLD } = require('hardhat/internal/constants')
 
 async function main() {
   const BuyMeACoffee = await ethers.getContractFactory('BuyMeATea')
