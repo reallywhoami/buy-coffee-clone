@@ -1,13 +1,12 @@
 import { ethers } from 'ethers'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import axios from 'axios'
-import Web3Modal from 'web3modal'
 import Input from '../components/Input'
 import Donate from '../components/Donate'
 
 import { contractAddress } from '../config'
+const { ethereum } = window
 
-import BuyMeATea from '../../artifacts/contracts/BuyMeATea.sol/BuyMeATea.json'
+import BuyMeATea from './artifacts/contracts/BuyMeATea.sol/BuyMeATea.json'
 
 export default function Home() {
   const [donates, setDonates] = useState([])
@@ -18,8 +17,6 @@ export default function Home() {
 
   const connectWallet = async () => {
     try {
-      const { ethereum } = window
-
       if (!ethereum) {
         console.log('please install MetaMask')
       }
@@ -36,8 +33,6 @@ export default function Home() {
 
   const buyTea = async () => {
     try {
-      const { ethereum } = window
-
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum, 'any')
         const signer = provider.getSigner()
@@ -88,7 +83,6 @@ export default function Home() {
   // Function to fetch all donates stored on-chain.
   const getDonates = async () => {
     try {
-      const { ethereum } = window
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum)
         const signer = provider.getSigner()
