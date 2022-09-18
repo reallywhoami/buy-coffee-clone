@@ -7,12 +7,16 @@ const Donate = ({ value, name, message }) => {
       href=''
     >
       <span className='absolute right-2 top-3 rounded-full px-2 py-1 bg-gray-200 text-green-600 font-medium text-xs'>
-        {value} ETH
+        {value.length > 7 ? `${value.slice(0, 7)}...` : value} ETH
       </span>
 
       <div className='text-white pr-17'>
-        <h5 className='text-2xl font-bold text-gray-900'>{name}</h5>
-        <p className='mt-2 text-lblock'>{message}</p>
+        <h5 className='text-2xl font-bold text-gray-900'>
+          {name.length > 20 ? `${name.slice(0, 20)}...` : name}
+        </h5>
+        <p className='mt-2 text-lblock'>
+          {message.length > 150 ? `${message.slice(0, 150)}...` : message}
+        </p>
       </div>
     </div>
   )

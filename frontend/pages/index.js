@@ -114,7 +114,7 @@ export default function Home() {
   return (
     <div className='main flex justify-center mt-10'>
       <div className='flex-col content-center justify-center'>
-        <div className='flex flex-col'>
+        <div className='flex flex-col px-5'>
           <h1 className='font-[Dosis] text-6xl mb-16 text-center'>
             If you like my work, please support me!
             <p className='mt-7'>☕</p>
@@ -124,10 +124,10 @@ export default function Home() {
             <>
               <h2 className='text-3xl text-center mb-4'>Buy me a tea!</h2>
               <div className='flex flex-col gap-5 items-center'>
-                <Input placeholder={'Name'} onc={onNameChange} />
-                <Input placeholder={'Message'} onc={onMessageChange} />
+                <Input label={'Name'} onc={onNameChange} />
+                <Input label={'Message'} onc={onMessageChange} />
                 <Input
-                  placeholder={'Value (ETH)'}
+                  label={'Value (ETH)'}
                   onc={onValueChange}
                   validate={true}
                 />

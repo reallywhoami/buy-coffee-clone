@@ -1,9 +1,7 @@
-const Input = ({ placeholder, onc, validate }) => {
+const Input = ({ label, onc, validate }) => {
   return (
     <div className='relative'>
-      <label className='block text-m font-medium text-gray-200'>
-        {placeholder}
-      </label>
+      <label className='block text-m font-medium text-gray-200'>{label}</label>
 
       <input
         className='w-full p-3 mt-1 text-sm border-2 border-gray-200 rounded'
