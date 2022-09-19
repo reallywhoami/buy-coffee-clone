@@ -152,7 +152,7 @@ export default function Home() {
               .slice(0)
               .reverse()
               .map((d, idx) => {
-                let { value, name, message } = d
+                let { tipper, value, name, message } = d
                 value = ethers.utils.formatEther(value)
                 return (
                   <Donate
@@ -160,6 +160,7 @@ export default function Home() {
                     name={name}
                     value={value}
                     message={message}
+                    tipper={tipper}
                   />
                 )
               })}
